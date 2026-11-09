@@ -173,6 +173,12 @@ function escapar(texto) {
   return div.innerHTML;
 }
 
+// Foto de la noticia (con el icono de fallback si no carga)
+function foto(n) {
+  return `<img src="img/n${n.id}.jpg" alt="${escapar(n.titulo)}" loading="lazy"
+    onerror="this.replaceWith(document.createTextNode('${ICONOS[n.categoria]}'))">`;
+}
+
 function formatearLecturas(n) {
   return n.toLocaleString("es-ES");
 }
@@ -181,7 +187,7 @@ function formatearLecturas(n) {
 function renderDestacada() {
   const n = noticias.find((x) => x.destacada);
   contDestacada.innerHTML = `
-    <div class="imagen imagen--${n.categoria}">${ICONOS[n.categoria]}</div>
+    <div class="imagen imagen--${n.categoria}">${foto(n)}</div>
     <div class="destacada__texto">
       <span class="etiqueta">${NOMBRES_CATEGORIA[n.categoria]}</span>
       <h1>${escapar(n.titulo)}</h1>
@@ -220,7 +226,7 @@ function renderNoticias() {
     .map(
       (n, i) => `
       <article class="tarjeta" data-id="${n.id}" tabindex="0" style="animation-delay:${i * 60}ms">
-        <div class="imagen imagen--${n.categoria}">${ICONOS[n.categoria]}</div>
+        <div class="imagen imagen--${n.categoria}">${foto(n)}</div>
         <div class="tarjeta__cuerpo">
           <span class="etiqueta">${NOMBRES_CATEGORIA[n.categoria]}</span>
           <h3>${escapar(n.titulo)}</h3>
@@ -289,7 +295,7 @@ function abrirModal(id) {
 
   const img = $("#modal-imagen");
   img.className = `modal__imagen imagen imagen--${n.categoria}`;
-  img.textContent = ICONOS[n.categoria];
+  img.innerHTML = foto(n);
   $("#modal-categoria").textContent = NOMBRES_CATEGORIA[n.categoria];
   $("#modal-titulo").textContent = n.titulo;
   $("#modal-meta").textContent = `Por ${n.autor} · ${n.fecha} · ${formatearLecturas(n.lecturas)} lecturas`;
