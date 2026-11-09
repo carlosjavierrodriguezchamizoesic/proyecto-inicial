@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Marcador — Diario Deportivo</title>
+  <meta name="description" content="El Marcador: noticias, resultados y clasificaciones deportivas.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span id="fecha-hoy"></span>
+      <button id="tema-toggle" class="topbar__btn" aria-label="Cambiar tema">🌙 Modo oscuro</button>
+    </div>
+  </div>
+
+  <!-- Cabecera -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">EL <span>MARCADOR</span></a>
+      <form class="buscador" id="buscador" role="search">
+        <input type="search" id="buscar" placeholder="Buscar noticias..." aria-label="Buscar noticias">
+      </form>
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="container">
+        <ul class="nav__list">
+          <li><a href="#" class="nav__link activo" data-categoria="todas">Portada</a></li>
+          <li><a href="#" class="nav__link" data-categoria="futbol">Fútbol</a></li>
+          <li><a href="#" class="nav__link" data-categoria="baloncesto">Baloncesto</a></li>
+          <li><a href="#" class="nav__link" data-categoria="tenis">Tenis</a></li>
+          <li><a href="#" class="nav__link" data-categoria="motor">Motor</a></li>
+          <li><a href="#" class="nav__link" data-categoria="ciclismo">Ciclismo</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Marcador en directo -->
+  <section class="ticker" aria-label="Resultados en directo">
+    <span class="ticker__label">EN DIRECTO</span>
+    <div class="ticker__track">
+      <div class="ticker__content" id="ticker"></div>
+    </div>
+  </section>
+
+  <main class="container main">
+    <div class="contenido">
+      <!-- Noticia destacada -->
+      <article class="destacada" id="destacada"></article>
+
+      <h2 class="seccion-titulo" id="titulo-seccion">Últimas noticias</h2>
+      <div class="noticias" id="noticias"></div>
+      <p class="sin-resultados" id="sin-resultados" hidden>No se han encontrado noticias.</p>
+    </div>
+
+    <aside class="lateral">
+      <section class="widget">
+        <h3 class="widget__titulo">Clasificación — Liga</h3>
+        <table class="tabla">
+          <thead>
+            <tr><th>#</th><th>Equipo</th><th>PJ</th><th>Pts</th></tr>
+          </thead>
+          <tbody id="clasificacion"></tbody>
+        </table>
+      </section>
+
+      <section class="widget">
+        <h3 class="widget__titulo">Lo más leído</h3>
+        <ol class="mas-leido" id="mas-leido"></ol>
+      </section>
+
+      <section class="widget widget--newsletter">
+        <h3 class="widget__titulo">Newsletter</h3>
+        <p>Recibe cada mañana las claves de la jornada.</p>
+        <form id="newsletter" novalidate>
+          <input type="email" id="email" placeholder="tu@email.com" required aria-label="Correo electrónico">
+          <button type="submit">Suscribirme</button>
+        </form>
+        <p class="newsletter__msg" id="newsletter-msg" role="status"></p>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Modal de noticia -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__fondo" data-cerrar></div>
+    <article class="modal__caja" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <button class="modal__cerrar" data-cerrar aria-label="Cerrar">✕</button>
+      <div class="modal__imagen" id="modal-imagen"></div>
+      <div class="modal__cuerpo">
+        <span class="etiqueta" id="modal-categoria"></span>
+        <h2 id="modal-titulo"></h2>
+        <p class="meta" id="modal-meta"></p>
+        <div id="modal-texto"></div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#" class="logo logo--footer">EL <span>MARCADOR</span></a>
+      <p>© <span id="anio"></span> El Marcador. Diario deportivo de ejemplo. Todas las noticias y equipos son ficticios.</p>
+    </div>
+  </footer>
+
+  <button class="arriba" id="arriba" aria-label="Volver arriba">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
