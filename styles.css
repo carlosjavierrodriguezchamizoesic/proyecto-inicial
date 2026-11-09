@@ -415,3 +415,119 @@ a { color: inherit; text-decoration: none; }
   .nav__list { flex-direction: column; }
   .destacada h1 { font-size: 1.4rem; }
 }
+
+/* =====================================================
+   Glassmorphism
+   Superficies translúcidas con desenfoque sobre un
+   fondo de manchas de color.
+   ===================================================== */
+:root {
+  --fondo: #eef0f7;
+  --superficie: rgba(255, 255, 255, 0.45);
+  --vidrio-borde: rgba(255, 255, 255, 0.65);
+  --vidrio-oscuro: rgba(15, 15, 25, 0.55);
+  --texto-suave: #4a4a55;
+  --borde: rgba(0, 0, 0, 0.08);
+  --sombra: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --desenfoque: blur(16px) saturate(160%);
+  --radio: 16px;
+}
+
+body.oscuro {
+  --fondo: #0b0d18;
+  --superficie: rgba(30, 32, 48, 0.45);
+  --vidrio-borde: rgba(255, 255, 255, 0.12);
+  --vidrio-oscuro: rgba(5, 5, 12, 0.6);
+  --texto-suave: #b4b4c4;
+  --borde: rgba(255, 255, 255, 0.1);
+  --sombra: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(217, 4, 41, 0.55), transparent 38%),
+    radial-gradient(circle at 92% 8%, rgba(58, 134, 255, 0.5), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(255, 183, 3, 0.45), transparent 42%),
+    radial-gradient(circle at 15% 85%, rgba(43, 147, 72, 0.45), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(131, 56, 236, 0.25), transparent 50%),
+    var(--fondo);
+  background-attachment: fixed;
+}
+
+/* Superficies de vidrio claras */
+.header,
+.destacada,
+.tarjeta,
+.widget,
+.modal__caja {
+  background: var(--superficie);
+  backdrop-filter: var(--desenfoque);
+  -webkit-backdrop-filter: var(--desenfoque);
+  border: 1px solid var(--vidrio-borde);
+}
+
+.header { border-width: 0 0 1px; border-bottom-color: var(--vidrio-borde); }
+
+/* Superficies de vidrio oscuras */
+.topbar,
+.ticker,
+.footer,
+.widget--newsletter {
+  background: var(--vidrio-oscuro);
+  backdrop-filter: var(--desenfoque);
+  -webkit-backdrop-filter: var(--desenfoque);
+}
+.widget--newsletter { border-color: rgba(255, 255, 255, 0.15); }
+
+.nav { background: rgba(217, 4, 41, 0.78); }
+.nav__link.activo,
+.nav__link:hover { background: rgba(255, 255, 255, 0.18); }
+.ticker__label { background: rgba(217, 4, 41, 0.9); }
+
+/* Brillo sutil en el borde superior */
+.destacada,
+.tarjeta,
+.widget,
+.modal__caja { box-shadow: var(--sombra), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+
+.tarjeta:hover {
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Imágenes con esquinas acordes */
+.tarjeta .imagen { border-radius: var(--radio) var(--radio) 0 0; }
+
+/* Campos de formulario translúcidos */
+.buscador input {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: var(--vidrio-borde);
+}
+body.oscuro .buscador input { background: rgba(255, 255, 255, 0.06); }
+.buscador input::placeholder { color: var(--texto-suave); }
+
+.widget--newsletter input {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.widget--newsletter input::placeholder { color: #bbb; }
+
+/* Modal con fondo desenfocado */
+.modal__fondo {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.modal__cerrar {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.arriba {
+  background: rgba(217, 4, 41, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
